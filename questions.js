@@ -21,14 +21,14 @@ export const quiz_js = {
             reponse: "A) for"
         },
         {
-            text: "3. Quelle sera la sortie du code suivant : `let age = 18; if (age >= 18) { console.log('Accès autorisé'); } else { console.log('Accès refusé'); }`",
+            text: "3. Quelle sera la sortie de `console.log(5 + '5');` ?",
             options: [
-                "A) Accès refusé",
-                "B) Accès autorisé",
+                "A) 10",
+                "B) 55",
                 "C) Erreur de syntaxe",
-                "D) Rien ne s'affiche"
+                "D) NaN"
             ],
-            reponse: "B) Accès autorisé"
+            reponse: "B) 55"
         },
         {
             text: "4. Quelle déclaration est correcte pour définir une variable dont la valeur peut changer ?",

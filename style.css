@@ -43,7 +43,7 @@ body{
 .button-container{
     text-align: center;
 }
-#next-button{
+#next-button,#replay-button{
     margin : 10px;
     margin-left: 500px;
     padding: 8px;

@@ -6,6 +6,7 @@ const choice = document.querySelector(".options");
 let currentIndex = 0;
 
 const next = document.getElementById('next-button')
+const replay = document.getElementById('replay-button');
 
 function loadQuestion(){
   choice.innerHTML='';
@@ -23,10 +24,17 @@ next.addEventListener('click', () => {
   if(currentIndex<quiz_js.questions.length){
     loadQuestion();
   }else{
-    next.innerText='The end';
+    questions.innerText='The end';
     choice.innerHTML='';
     next.style.display='none';
+    replay.style.display='inline-block';
   }
 });
-
 loadQuestion();
+
+replay.addEventListener('click',()=>{
+  currentIndex=0;
+  replay.style.display='none';
+  next.style.display='inline-block';
+  loadQuestion();
+})
