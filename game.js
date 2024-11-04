@@ -9,13 +9,10 @@ const next = document.getElementById('next-button')
 const replay = document.getElementById('replay-button');
 
 function checkAnswer(answer, goodAnswer, button) {
-  // console.log("j'imprime mes paramètres", answer, goodAnswer)
   if (answer === goodAnswer) {
     button.classList.add("true")
-  // console.log("bonne réponse") 
   } else {
     button.classList.add("false")
-  // console.log("mauvaise réponse")
   }
 }
 
@@ -32,11 +29,17 @@ function loadQuestion(){
     choice.appendChild(bouton);
     bouton.addEventListener('click', () => {
       checkAnswer(option, correctAnswer, bouton)
+      choice.classList.remove("enabled")
+      choice.classList.add("disabled")
       next.classList.remove("disabled")
       next.classList.add("enabled")
     })
   })
 }
+
+// => créer une constante qui récupère tous les éléments qui ont la classe "button"
+// => changer la classe "button" dans le css pour plus decompréhension
+// => boucler sur chaque bouton avec un disable
 
 next.addEventListener('click', () => {
   currentIndex++;
