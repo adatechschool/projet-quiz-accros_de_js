@@ -20,6 +20,7 @@ function checkAnswer(answer, goodAnswer, button) {
 }
 
 function loadQuestion(){
+  next.classList.add("disabled")
   choice.innerHTML='';
   const currentQuestion = quiz_js.questions[currentIndex];
   const correctAnswer = currentQuestion.reponse
@@ -30,10 +31,11 @@ function loadQuestion(){
     bouton.classList.add('button');
     choice.appendChild(bouton);
     bouton.addEventListener('click', () => {
-      // console.log("ce bouton a été cliqué", option)
       checkAnswer(option, correctAnswer, bouton)
+      next.classList.remove("disabled")
+      next.classList.add("enabled")
     })
-  });  
+  })
 }
 
 next.addEventListener('click', () => {
