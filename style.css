@@ -51,6 +51,15 @@ body{
     transform: scale(1.05);
     box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
 }
+
+button.true {
+    border: green solid 2px;
+}
+
+button.false {
+    border: red solid 2px;
+}
+
 .button-container{
     text-align: center;
 }
