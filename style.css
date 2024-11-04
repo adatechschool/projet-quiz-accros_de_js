@@ -51,6 +51,15 @@ body{
     transform: scale(1.05);
     box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
 }
+
+button.true {
+    border: green solid 2px;
+}
+
+button.false {
+    border: red solid 2px;
+}
+
 .button-container{
     text-align: center;
 }
@@ -62,4 +71,12 @@ body{
     color:white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;
+}
+
+#next-button.enabled {
+    pointer-events: visible;
+}
+
+#next-button.disabled {
+    pointer-events: none;
 }
