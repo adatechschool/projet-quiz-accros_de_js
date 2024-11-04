@@ -32,7 +32,7 @@ next.addEventListener('click', () => {
 });
 loadQuestion();
 
-replay.addEventListener('click',()=>{
+replay.addEventListener('click', () => {
   currentIndex=0;
   replay.style.display='none';
   next.style.display='inline-block';
