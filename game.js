@@ -1,7 +1,8 @@
 import { quiz_js } from './questions.js';
 
 const questions = document.querySelector('.question');
-const choice = document.querySelector(".options");
+const allButtons = document.querySelector(".options");
+//console.log(allButtons, "les options")
 
 let currentIndex = 0;
 
@@ -9,34 +10,39 @@ const next = document.getElementById('next-button')
 const replay = document.getElementById('replay-button');
 
 function checkAnswer(answer, goodAnswer, button) {
-  // console.log("j'imprime mes paramètres", answer, goodAnswer)
   if (answer === goodAnswer) {
     button.classList.add("true")
-  // console.log("bonne réponse") 
   } else {
     button.classList.add("false")
-  // console.log("mauvaise réponse")
   }
 }
 
 function loadQuestion(){
   next.classList.add("disabled")
-  choice.innerHTML='';
+  allButtons.innerHTML='';
   const currentQuestion = quiz_js.questions[currentIndex];
-  const correctAnswer = currentQuestion.reponse
+  const correctAnswer = currentQuestion.reponse;
   questions.innerText = currentQuestion.text;
   currentQuestion.options.forEach((option, index) => {
     const bouton = document.createElement('button');
     bouton.innerText = option;
     bouton.classList.add('button');
-    choice.appendChild(bouton);
+    allButtons.appendChild(bouton);
     bouton.addEventListener('click', () => {
       checkAnswer(option, correctAnswer, bouton)
+
+      const button = allButtons.querySelectorAll(".button")
+      for (const btn of button) {
+      btn.classList.add("disabled")
+    }
+
       next.classList.remove("disabled")
       next.classList.add("enabled")
     })
   })
 }
+// => créer une constante qui récupère tous les éléments qui ont la classe "button"
+// => boucler sur chaque bouton avec un disable
 
 next.addEventListener('click', () => {
   currentIndex++;
@@ -44,7 +50,7 @@ next.addEventListener('click', () => {
     loadQuestion();
   }else{
     questions.innerText='The end';
-    choice.innerHTML='';
+    allButtons.innerHTML='';
     next.style.display='none';
     replay.style.display='inline-block';
   }

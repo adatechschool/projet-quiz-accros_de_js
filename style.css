@@ -45,8 +45,16 @@ body{
     background-color: #f0d8ea;
     color:white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
 }
+
+.options button.enabled{
+    pointer-events: visible;
+}
+
+.options button.disabled{
+    pointer-events: none;
+}
+
 .options button:hover{
     transform: scale(1.05);
     box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
