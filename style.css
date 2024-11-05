@@ -33,6 +33,9 @@ body{
     justify-content: center;
     gap: 20px;
     padding: 20px;
+    color:rgb(212, 75, 105);
+    font-family:'circular';
+    font-size: 30px;
 }
 
 .options button{

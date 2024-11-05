@@ -2,19 +2,21 @@ import { quiz_js } from './questions.js';
 
 const questions = document.querySelector('.question');
 const allButtons = document.querySelector(".options");
-//console.log(allButtons, "les options")
 
 let currentIndex = 0;
 
-const next = document.getElementById('next-button')
+const next = document.getElementById('next-button');
 const replay = document.getElementById('replay-button');
 
-function checkAnswer(answer, goodAnswer, button) {
-  if (answer === goodAnswer) {
-    button.classList.add("true")
-  } else {
-    button.classList.add("false")
+let score = 0;
+function checkAnswer(answer, goodAnswer, button){
+  if(answer === goodAnswer){
+    button.classList.add("true");
+    score++;
+  }else{
+    button.classList.add("false");
   }
+  return score;
 }
 
 function loadQuestion(){
@@ -30,29 +32,39 @@ function loadQuestion(){
     allButtons.appendChild(bouton);
     bouton.addEventListener('click', () => {
       checkAnswer(option, correctAnswer, bouton)
-
       const button = allButtons.querySelectorAll(".button")
       for (const btn of button) {
       btn.classList.add("disabled")
-    }
-
+      }
       next.classList.remove("disabled")
       next.classList.add("enabled")
     })
   })
 }
-// => créer une constante qui récupère tous les éléments qui ont la classe "button"
-// => boucler sur chaque bouton avec un disable
+
+function message(){
+  if(score==4){
+    allButtons.innerText="BRAVOOOO!!!🥳";
+    confetti(
+      {
+        particleCount: 150,
+        spread: 180
+      })
+  }else if(score==3){
+    allButtons.innerText="pas mal 😉";
+  }else{allButtons.innerText="essaye encore 🙁"}
+}
 
 next.addEventListener('click', () => {
   currentIndex++;
   if(currentIndex<quiz_js.questions.length){
     loadQuestion();
   }else{
-    questions.innerText='The end';
+    questions.innerText= `Ton score : ${score}`;
     allButtons.innerHTML='';
     next.style.display='none';
     replay.style.display='inline-block';
+    message()
   }
 });
 loadQuestion();
@@ -62,4 +74,5 @@ replay.addEventListener('click', () => {
   replay.style.display='none';
   next.style.display='inline-block';
   loadQuestion();
+  score = 0;
 })
