@@ -47,11 +47,11 @@ body{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.options button .enabled{
+.options button.enabled{
     pointer-events: visible;
 }
 
-.options button .disabled{
+.options button.disabled{
     pointer-events: none;
 }
 
