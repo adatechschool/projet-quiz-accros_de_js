@@ -93,16 +93,23 @@ button.false {
 }
 
 #Progress_Status {
-    width: 50%;
+    width: 20%;
     background-color: #ddd;
-  }
-    
-  #myprogressBar {
+    position: absolute;
+    top: 40px; 
+    right: 40px; /
+    border-radius: 20px; 
+}
+
+#myprogressBar {
     width: 1%;
-    height: 35px;
+    height: 15px;
     background-color: #4CAF50;
     text-align: center;
     line-height: 32px;
     color: black;
-  }
+    border-radius: 5px;
+}
+
+
   
