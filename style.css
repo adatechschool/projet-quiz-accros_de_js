@@ -4,9 +4,13 @@ body{
     background: linear-gradient(to right,#BFECFF, #CDC1FF, #FFF6E3,#FFCCEA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .question{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: auto;
     margin-top: 150px;
-    width:600px;
+    max-width:600px;
     border: solid white 3px ;
     border-radius: 20px;
     background-color:#cfc9e6;
