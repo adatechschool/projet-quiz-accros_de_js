@@ -9,6 +9,14 @@ const next = document.getElementById('next-button');
 const replay = document.getElementById('replay-button');
 
 let score = 0;
+
+// Fonction pour mettre à jour la barre de progression
+function update(currentIndex, totalQuestions) {
+  const element = document.getElementById("myprogressBar");   
+  const width = (currentIndex / totalQuestions) * 100;
+  element.style.width = width + '%'; 
+}
+
 function checkAnswer(answer, goodAnswer, button){
   if(answer === goodAnswer){
     button.classList.add("true");
@@ -29,14 +37,22 @@ function loadQuestion(){
   const currentQuestion = quiz_js.questions[currentIndex];
   const correctAnswer = currentQuestion.reponse;
   questions.innerText = currentQuestion.text;
+
+  // Mettre à jour la barre de progression avec la question actuelle
+  update(currentIndex, quiz_js.questions.length);
+
   currentQuestion.options.forEach((option, index) => {
     const bouton = document.createElement('button');
     bouton.innerText = option;
     bouton.classList.add('button');
     allButtons.appendChild(bouton);
+
     bouton.addEventListener('click', () => {
       checkAnswer(option, correctAnswer, bouton)
-      console.log(bouton)
+
+      // Mettre à jour la barre de progression après la sélection de la réponse
+      update(currentIndex + 1, quiz_js.questions.length);
+
       const button = allButtons.querySelectorAll(".button")
       for (const btn of button) {
       btn.classList.add("disabled")
@@ -72,7 +88,6 @@ next.addEventListener('click', () => {
     message()
   }
 });
-loadQuestion();
 
 replay.addEventListener('click', () => {
   currentIndex=0;
@@ -82,4 +97,4 @@ replay.addEventListener('click', () => {
   score = 0;
 })
 
-
+loadQuestion();

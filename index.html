@@ -28,7 +28,16 @@
 		  </button> 
 		</div>
 	</div>
-	<script type="module" src="game.js"></script>
+<div id="Progress_Status">
+	<div id="myprogressBar"></div>
+  </div>
+  	<script type="module" src="game.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+	<script>function update(currentIndex, totalQuestions) {
+		var element = document.getElementById("myprogressBar");   
+		var width = (currentIndex / totalQuestions) * 100;
+		element.style.width = width + '%'; 
+	  }
+	  </script>
 </body>
 </html>
