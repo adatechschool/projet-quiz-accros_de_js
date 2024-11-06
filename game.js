@@ -1,7 +1,7 @@
 import { quiz_js } from './questions.js';
 
 const questions = document.querySelector('.question');
-const allButtons = document.querySelector(".options");
+const choices = document.querySelector(".options");
 
 let currentIndex = 0;
 
@@ -10,7 +10,6 @@ const replay = document.getElementById('replay-button');
 
 let score = 0;
 
-// Fonction pour mettre à jour la barre de progression
 function update(currentIndex, totalQuestions) {
   const element = document.getElementById("myprogressBar");   
   const width = (currentIndex / totalQuestions) * 100;
@@ -33,30 +32,24 @@ function checkAnswer(answer, goodAnswer, button){
 
 function loadQuestion(){
   next.classList.add("disabled")
-  allButtons.innerHTML='';
+  choices.innerHTML='';
   const currentQuestion = quiz_js.questions[currentIndex];
   const correctAnswer = currentQuestion.reponse;
   questions.innerText = currentQuestion.text;
 
-  // Mettre à jour la barre de progression avec la question actuelle
   update(currentIndex, quiz_js.questions.length);
 
   currentQuestion.options.forEach((option, index) => {
-    const bouton = document.createElement('button');
-    bouton.innerText = option;
-    bouton.classList.add('button');
-    allButtons.appendChild(bouton);
-
-    bouton.addEventListener('click', () => {
-      checkAnswer(option, correctAnswer, bouton)
-
-      // Mettre à jour la barre de progression après la sélection de la réponse
+    const pressButton = document.createElement('button');
+    pressButton.innerText = option;
+    pressButton.classList.add('button');
+    choices.appendChild(pressButton);
+    
+    pressButton.addEventListener('click', () => {
+      checkAnswer(option, correctAnswer, pressButton)
       update(currentIndex + 1, quiz_js.questions.length);
-
-      const button = allButtons.querySelectorAll(".button")
-      for (const btn of button) {
-      btn.classList.add("disabled")
-      }
+      const answerButtons = choices.querySelectorAll(".button");
+      answerButtons.forEach(btn => btn.classList.add("disabled"));      
       next.classList.remove("disabled")
       next.classList.add("enabled")
     })
@@ -65,15 +58,15 @@ function loadQuestion(){
 
 function message(){
   if(score==4){
-    allButtons.innerText="BRAVOOOO!!!🥳";
+    choices.innerText="BRAVOOOO!!!🥳";
     confetti(
       {
         particleCount: 150,
         spread: 180
       })
   }else if(score==3){
-    allButtons.innerText="pas mal 😉";
-  }else{allButtons.innerText="essaye encore 🙁"}
+    choices.innerText="pas mal 😉";
+  }else{choices.innerText="essaye encore 🙁"}
 }
 
 next.addEventListener('click', () => {
@@ -82,7 +75,7 @@ next.addEventListener('click', () => {
     loadQuestion();
   }else{
     questions.innerText= `Ton score : ${score}`;
-    allButtons.innerHTML='';
+    choices.innerHTML='';
     next.style.display='none';
     replay.style.display='inline-block';
     message()
