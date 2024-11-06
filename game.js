@@ -13,8 +13,12 @@ function checkAnswer(answer, goodAnswer, button){
   if(answer === goodAnswer){
     button.classList.add("true");
     score++;
+    let tom6=new Audio("sons/k.mp3");
+    tom6.play();
   }else{
     button.classList.add("false");
+    let tom2=new Audio("sons/a.mp3");
+    tom2.play();
   }
   return score;
 }
@@ -32,6 +36,7 @@ function loadQuestion(){
     allButtons.appendChild(bouton);
     bouton.addEventListener('click', () => {
       checkAnswer(option, correctAnswer, bouton)
+      console.log(bouton)
       const button = allButtons.querySelectorAll(".button")
       for (const btn of button) {
       btn.classList.add("disabled")
@@ -76,3 +81,5 @@ replay.addEventListener('click', () => {
   loadQuestion();
   score = 0;
 })
+
+
